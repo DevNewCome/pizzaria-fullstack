@@ -3,13 +3,14 @@ import { Button } from "@/app/dashboard/components/button"
 import { api } from '@/services/api'
 import { redirect } from 'next/navigation'
 import { getCookieServer } from '@/lib/cookieServer'
+import { cookies } from "next/headers";
 
 export default function Category(){
 
   async function handleRegisterCategory(formData: FormData){
     "use server"
     
-    const name = formData.get("name")
+    const name = formData.get("name") // pega do input name
 
     if(name === "") return;
 
@@ -17,8 +18,13 @@ export default function Category(){
       name: name,
     }
 
-    const token = getCookieServer();
-
+    const token = await getCookieServer();
+    // console.log("Token recebido:", token); 
+    
+        if (!token) {
+        console.error("Token não encontrado");
+        return;
+    }
     await api.post("/category", data, {
       headers:{
         Authorization: `Bearer ${token}`
