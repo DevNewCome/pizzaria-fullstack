@@ -1,6 +1,7 @@
 import { Orders } from "./components/orders";
 
-export default function Dashboard(){
+export default async function Dashboard(){
+
     return(
       <>
         <Orders/>
