@@ -12,11 +12,10 @@ export default async function Product(){
     }
   })
 
-  console.log(response.data)
 
     return(
         <main>
-          <Form/>
+          <Form categories={response.data}/>
         </main>
     )
 }
