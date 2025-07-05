@@ -6,7 +6,11 @@ import {use} from 'react'
 import { OrderContext } from '@/providers/order'
 
 export function Modalorder(){
-const {onRequestClose} = use(OrderContext)
+const {onRequestClose, order, finishOrder} = use(OrderContext)
+
+async function handleFinishOrder(){
+  await finishOrder(order[0].order.id)
+}
 
   return(
     <dialog className={styles.dialogContainer}>
@@ -20,20 +24,23 @@ const {onRequestClose} = use(OrderContext)
           <h2>Detalhes do pedido</h2>
 
           <span className={styles.table}>
-            Mesa <b>36</b>
+            Mesa <b>{order[0].order.table}</b>
           </span>
+          {order[0].order?.name && (
+            <span className={styles.table}>
+            Cliente <b>{order[0].order.name}</b>
+            </span>
+          )}
 
-          <section className={styles.item}>
-            <span>1 - <b>Pizza catupiry</b></span>
-            <span className={styles.description}>Pizza de frango com catupiry, borda recheada</span>
+         {order.map(item => (
+           <section className={styles.item}>
+            <span>{item.amount} - <b>{item.product.name}</b></span>
+            <span className={styles.description}>{item.product.description}</span>
           </section>
+         ))}
+         
 
-          <section className={styles.item}>
-            <span>3 - <b>Pizza calabresa</b></span>
-            <span className={styles.description}>Pizza de frango com catupiry, borda recheada</span>
-          </section>          
-
-          <button className={styles.buttonOrder}>
+          <button className={styles.buttonOrder} onClick={handleFinishOrder}>
             Concluir pedido
           </button>
 

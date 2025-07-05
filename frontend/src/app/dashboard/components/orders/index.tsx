@@ -14,8 +14,8 @@ interface Props{
 export function Orders({orders}: Props){
     const {isOpen,onRequestOpen} = use(OrderContext)
 
-    function handleDetailOrder(order_id: string){
-        onRequestOpen(order_id)
+   async function handleDetailOrder(order_id: string){
+        await onRequestOpen(order_id)
     }
 
     return(
