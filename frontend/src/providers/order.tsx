@@ -6,7 +6,7 @@ import { getCookieClient } from '@/lib/cookieClient';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 
-interface OrderItemProps{
+export interface OrderItemProps{
     id:string;
     amount:string;
     create_at:string;

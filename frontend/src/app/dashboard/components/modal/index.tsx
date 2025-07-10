@@ -4,7 +4,7 @@ import styles from './styles.module.scss'
 import { X } from 'lucide-react'
 import {use} from 'react'
 import { OrderContext } from '@/providers/order'
-
+import { calculateTotalOrders } from '@/lib/totalFunction'
 export function Modalorder(){
 const {onRequestClose, order, finishOrder} = use(OrderContext)
 
@@ -34,10 +34,11 @@ async function handleFinishOrder(){
 
          {order.map(item => (
            <section className={styles.item}>
-            <span>{item.amount} - <b>{item.product.name}</b></span>
+            <span>Quantidade: {item.amount} - <b>{item.product.name}</b> R$ {parseFloat(item.product.price) * parseFloat(item.amount)}</span>
             <span className={styles.description}>{item.product.description}</span>
           </section>
          ))}
+                       <h3>Valor total: {calculateTotalOrders(order)}</h3>
          
 
           <button className={styles.buttonOrder} onClick={handleFinishOrder}>
