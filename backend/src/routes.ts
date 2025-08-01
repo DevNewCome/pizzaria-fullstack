@@ -23,7 +23,7 @@ const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"))
 
 // ROTAS USERS
-router.post('/users', createUserController); // criado usando funções inves de classes, apenas para teste
+router.post('/users', createUserController);
 router.post('/session', new AuthUserController().handle)
 router.get('/me', isAuth, new DetailUserController().handle)
 
@@ -35,7 +35,6 @@ router.get('/category', isAuth, new ListCategoryController().handle)
 router.post('/product', isAuth,upload.single('file'), new CreateProductController().handle)
 router.get('/category/product', isAuth, new ListByCategoryController().handle)
 
-
 //ROTAS ORDERS
 router.post('/order', isAuth, new CreateOrderController().handle)
 router.delete('/order', isAuth, new RemoveOrderController().handle)
@@ -45,6 +44,5 @@ router.put('/order/send', isAuth, new SendOrderController().handle)
 router.get('/orders', isAuth, new ListOrdersController().handle)
 router.get('/order/detail', isAuth, new DetailOrderController().handle)
 router.put('/order/finish', isAuth, new FinishOrderController().handle)
-
 
 export { router };

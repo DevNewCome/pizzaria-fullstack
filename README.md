@@ -12,6 +12,25 @@ Sistema completo de gerenciamento para pizzaria desenvolvido com arquitetura ful
 - **Sistema de Pedidos**: Criação, edição e finalização de pedidos
 - **Controle de Itens**: Adição e remoção de itens nos pedidos
 - **Dashboard Administrativo**: Interface para gerenciamento completo
+- **Documentação Interativa**: API documentada com Swagger
+
+## 📚 Documentação da API
+
+### Swagger UI
+A documentação interativa da API está disponível através do Swagger UI:
+
+- **URL**: `http://localhost:3001/api-docs`
+- **Descrição**: Interface interativa para testar todas as rotas da API
+- **Recursos**: 
+  - Teste todas as rotas diretamente no navegador
+  - Veja exemplos de requisição e resposta
+  - Entenda os parâmetros necessários
+  - Valide os formatos de dados
+
+### Documentação Completa
+Para documentação detalhada com exemplos de uso, consulte:
+- **Arquivo**: `backend/API_DOCUMENTATION.md`
+- **Conteúdo**: Guia completo com exemplos de cURL, modelos de dados e fluxos
 
 ## 🛠️ Tecnologias Utilizadas
 
@@ -35,6 +54,8 @@ Sistema completo de gerenciamento para pizzaria desenvolvido com arquitetura ful
 - **Bcryptjs** - Criptografia de senhas
 - **Multer** - Upload de arquivos
 - **CORS** - Cross-Origin Resource Sharing
+- **Swagger UI Express** - Documentação interativa da API
+- **Swagger JSDoc** - Geração de documentação a partir de comentários
 
 ### Testes
 - **Jest** - Framework de testes
@@ -79,6 +100,7 @@ Sistema completo de gerenciamento para pizzaria desenvolvido com arquitetura ful
    ```
 
 O backend estará rodando em `http://localhost:3001`
+A documentação da API estará disponível em `http://localhost:3001/api-docs`
 
 ### Configuração do Frontend
 
@@ -267,16 +289,17 @@ projeto-pizzaria/
 │   │   ├── controllers/     # Controladores da aplicação
 │   │   ├── middlewares/     # Middlewares (autenticação, etc.)
 │   │   ├── services/        # Lógica de negócio
-│   │   ├── config/          # Configurações (multer, etc.)
+│   │   ├── config/          # Configurações (multer, swagger, etc.)
 │   │   ├── @types/          # Definições de tipos TypeScript
 │   │   ├── prisma/          # Configurações do Prisma
 │   │   ├── __tests__/       # Testes automatizados
-│   │   ├── routes.ts        # Definição das rotas
+│   │   ├── routes.ts        # Definição das rotas com Swagger
 │   │   └── server.ts        # Arquivo principal do servidor
 │   ├── prisma/
 │   │   ├── schema.prisma    # Schema do banco de dados
 │   │   └── migrations/      # Migrações do banco
 │   ├── jest.config.js       # Configuração do Jest
+│   ├── API_DOCUMENTATION.md # Documentação detalhada da API
 │   └── package.json
 ├── frontend/
 │   ├── src/
@@ -330,6 +353,7 @@ projeto-pizzaria/
 - **TypeScript**: Tipagem estática para maior segurança
 - **ESLint**: Linting para manter padrões de código
 - **Prisma**: ORM type-safe para banco de dados
+- **Swagger**: Documentação automática da API
 
 ## 🚀 Futuras Melhorias
 
