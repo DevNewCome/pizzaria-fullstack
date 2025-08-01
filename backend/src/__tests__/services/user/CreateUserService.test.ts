@@ -15,8 +15,16 @@ jest.mock('bcryptjs', () => ({
   hash: jest.fn(),
 }));
 
-const mockPrisma = prismaClient as jest.Mocked<typeof prismaClient>;
-const mockHash = hash as jest.MockedFunction<typeof hash>;
+// Cast para simplificar o prismaClient com mocks do jest
+const mockPrisma = prismaClient as unknown as {
+  user: {
+    findFirst: jest.Mock<any, any>;
+    create: jest.Mock<any, any>;
+  };
+};
+
+// Aqui forçamos o mock do hash como jest.Mock simples
+const mockHash = hash as unknown as jest.Mock;
 
 describe('CreateUserService', () => {
   beforeEach(() => {
@@ -33,14 +41,11 @@ describe('CreateUserService', () => {
     it('should create a user successfully with valid data', async () => {
       // Arrange
       mockPrisma.user.findFirst.mockResolvedValue(null);
-      mockHash.mockResolvedValue('hashedPassword' as never);
+      mockHash.mockResolvedValue('hashedPassword');
       mockPrisma.user.create.mockResolvedValue({
         id: 'user-id',
         name: 'Test User',
         email: 'test@example.com',
-        password: 'hashedPassword',
-        created_at: new Date(),
-        updated_at: new Date(),
       });
 
       // Act
@@ -108,11 +113,11 @@ describe('CreateUserService', () => {
     it('should handle database errors gracefully', async () => {
       // Arrange
       mockPrisma.user.findFirst.mockResolvedValue(null);
-      mockHash.mockResolvedValue('hashedPassword' as never);
+      mockHash.mockResolvedValue('hashedPassword');
       mockPrisma.user.create.mockRejectedValue(new Error('Database connection failed'));
 
       // Act & Assert
       await expect(createUserService(validUserData)).rejects.toThrow('Database connection failed');
     });
   });
-}); 
+});

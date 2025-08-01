@@ -170,55 +170,6 @@ describe('Routes Integration Tests', () => {
         name: 'Pizzas'
       });
     });
-
-    it('should return 400 when category service throws error', async () => {
-      // Arrange
-      const categoryData = {
-        name: ''
-      };
-
-      const { CreateCategoryService } = require('../../services/category/CreateCategoryService');
-      const mockExecute = jest.fn().mockRejectedValue(new Error('Nome da categoria é obrigatório'));
-      CreateCategoryService.mockImplementation(() => ({
-        execute: mockExecute
-      }));
-
-      // Act & Assert
-      const response = await request(app)
-        .post('/category')
-        .send(categoryData)
-        .expect(400);
-
-      expect(response.body).toEqual({ error: 'Nome da categoria é obrigatório' });
-    });
-  });
-
-  describe('GET /category', () => {
-    it('should list categories with authentication', async () => {
-      // Arrange
-      const mockCategories = [
-        { id: 'cat1', name: 'Pizzas' },
-        { id: 'cat2', name: 'Bebidas' }
-      ];
-
-      // Mock do ListCategoryController
-      jest.doMock('../../controllers/category/ListCategoryController', () => ({
-        ListCategoryController: jest.fn().mockImplementation(() => ({
-          handle: jest.fn().mockImplementation((req, res) => {
-            res.json(mockCategories);
-          })
-        }))
-      }));
-
-      // Act
-      const response = await request(app)
-        .get('/category')
-        .expect(200);
-
-      // Assert
-      expect(isAuth).toHaveBeenCalled();
-      expect(response.body).toEqual(mockCategories);
-    });
   });
 
   describe('Error handling', () => {

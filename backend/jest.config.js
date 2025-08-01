@@ -14,5 +14,15 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
-  }
+  },
+  reporters: [
+    'default',
+    ['jest-html-reporter', {
+      pageTitle: 'Relatório de Testes - Sistema de Pizzaria',
+      outputPath: './test-report.html',
+      includeFailureMsg: true,
+      includeConsoleLog: true,
+      theme: 'darkTheme'
+    }]
+  ]
 }; 
