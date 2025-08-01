@@ -1,77 +1,295 @@
-# 🍕 Pizzaria Fullstack
+# 🍕 Sistema de Gerenciamento de Pizzaria
 
-Sistema completo para gerenciamento de pedidos de uma pizzaria, com **frontend** e **backend** separados. Desenvolvido com **Next.js** (frontend), **Node.js + TypeScript** (backend), **PostgreSQL** para o banco de dados, **Prisma ORM**, e estilizado com **Sass**. As APIs foram testadas utilizando **Insomnia**.
+## Descrição Geral
 
----
+Sistema completo de gerenciamento para pizzaria desenvolvido com arquitetura full-stack. O projeto permite o controle de usuários, categorias de produtos, produtos, pedidos e itens, oferecendo uma solução completa para o gerenciamento de uma pizzaria.
 
-## 📚 Tecnologias Utilizadas
+### Funcionalidades Principais
 
-### 🔙 Backend
-- Node.js
-- TypeScript
-- PostgreSQL
-- Prisma ORM
-- JWT (autenticação)
-- Bcrypt (hash de senha)
-- Insomnia (testes de rotas)
+- **Autenticação de Usuários**: Sistema de login e registro com JWT
+- **Gerenciamento de Categorias**: Criação e listagem de categorias de produtos
+- **Gerenciamento de Produtos**: Cadastro de produtos com upload de imagens
+- **Sistema de Pedidos**: Criação, edição e finalização de pedidos
+- **Controle de Itens**: Adição e remoção de itens nos pedidos
+- **Dashboard Administrativo**: Interface para gerenciamento completo
 
-### 🎨 Frontend
-- Next.js
-- React
-- TypeScript
-- Sass (SCSS)
-- Axios
+## 🛠️ Tecnologias Utilizadas
 
----
+### Frontend
+- **Next.js 15.2.4** - Framework React com App Router
+- **React 19.0.0** - Biblioteca para interface do usuário
+- **TypeScript** - Linguagem de programação tipada
+- **SASS** - Pré-processador CSS
+- **Axios** - Cliente HTTP para requisições
+- **Lucide React** - Biblioteca de ícones
+- **Sonner** - Biblioteca de notificações
+- **Cookies-next** - Gerenciamento de cookies
 
-## ⚙️ Como Rodar o Projeto
+### Backend
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **TypeScript** - Linguagem de programação tipada
+- **Prisma** - ORM para banco de dados
+- **PostgreSQL** - Banco de dados relacional
+- **JWT** - Autenticação baseada em tokens
+- **Bcryptjs** - Criptografia de senhas
+- **Multer** - Upload de arquivos
+- **CORS** - Cross-Origin Resource Sharing
 
-📌 Funcionalidades Principais
-Autenticação de usuários (login)
+## 🚀 Como Rodar o Projeto Localmente
 
-Cadastro de produtos (pizzas)
+### Pré-requisitos
+- Node.js (versão 18 ou superior)
+- PostgreSQL instalado e configurado
+- npm ou yarn
 
-Listagem de pedidos em tempo real
+### Configuração do Backend
 
-Atualização de status dos pedidos (em preparo, pronto, entregue)
+1. **Navegue para a pasta do backend:**
+   ```bash
+   cd backend
+   ```
 
-Painel administrativo
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-Layout responsivo e estilizado com Sass
+3. **Configure as variáveis de ambiente:**
+   Crie um arquivo `.env` na pasta `backend` com as seguintes variáveis:
+   ```env
+   DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
+   JWT_SECRET="sua_chave_secreta_jwt"
+   ```
 
-🧪 Testes de API
-As rotas da API foram testadas com Insomnia.
+4. **Configure o banco de dados:**
+   ```bash
+   npx prisma migrate dev
+   npx prisma generate
+   ```
 
-Você pode importar o arquivo de exportação .json do Insomnia para testar todas as rotas rapidamente. (Recomenda-se adicioná-lo na pasta docs/ do projeto.)
+5. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-```bash
-# 1. Clone o repositório
-git clone https://github.com/DevNewCome/pizzaria-fullstack.git
-cd pizzaria-fullstack
+O backend estará rodando em `http://localhost:3001`
 
-# 2. Instale as dependências do backend
-cd backend
-npm install
+### Configuração do Frontend
 
-# 3. Configure as variáveis de ambiente do backend
-cp .env.example .env
-# Edite o .env com suas configurações:
-# DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_do_banco
-# JWT_SECRET=sua_chave_secreta
+1. **Navegue para a pasta do frontend:**
+   ```bash
+   cd frontend
+   ```
 
-# 4. Rode as migrações com o Prisma
-npx prisma migrate dev
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
 
-# 5. Inicie o servidor backend
-npm run dev
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-# 6. Em outro terminal, instale o frontend
-cd ../frontend
-npm install
+O frontend estará rodando em `http://localhost:3000`
 
-# 7. Inicie o frontend
-npm run dev
+## 📡 Como Usar a API
 
+### Autenticação
 
-👨‍💻 Autor
-Desenvolvido por Jefferson Lira
+#### Criar Usuário
+```http
+POST /users
+Content-Type: application/json
+
+{
+  "name": "Nome do Usuário",
+  "email": "usuario@email.com",
+  "password": "senha123"
+}
+```
+
+#### Fazer Login
+```http
+POST /session
+Content-Type: application/json
+
+{
+  "email": "usuario@email.com",
+  "password": "senha123"
+}
+```
+
+### Categorias
+
+#### Criar Categoria
+```http
+POST /category
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "name": "Nome da Categoria"
+}
+```
+
+#### Listar Categorias
+```http
+GET /category
+Authorization: Bearer <token>
+```
+
+### Produtos
+
+#### Criar Produto
+```http
+POST /product
+Authorization: Bearer <token>
+Content-Type: multipart/form-data
+
+{
+  "name": "Nome do Produto",
+  "price": "25.90",
+  "description": "Descrição do produto",
+  "category_id": "id_da_categoria",
+  "file": [arquivo_imagem]
+}
+```
+
+#### Listar Produtos por Categoria
+```http
+GET /category/product?category_id=<id_categoria>
+Authorization: Bearer <token>
+```
+
+### Pedidos
+
+#### Criar Pedido
+```http
+POST /order
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "table": 1,
+  "name": "Nome do Cliente"
+}
+```
+
+#### Adicionar Item ao Pedido
+```http
+POST /order/add
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "order_id": "id_do_pedido",
+  "product_id": "id_do_produto",
+  "amount": 2
+}
+```
+
+#### Enviar Pedido
+```http
+PUT /order/send
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "order_id": "id_do_pedido"
+}
+```
+
+#### Finalizar Pedido
+```http
+PUT /order/finish
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "order_id": "id_do_pedido"
+}
+```
+
+## 📁 Estrutura de Pastas
+
+```
+projeto-pizzaria/
+├── backend/
+│   ├── src/
+│   │   ├── controllers/     # Controladores da aplicação
+│   │   ├── middlewares/     # Middlewares (autenticação, etc.)
+│   │   ├── services/        # Lógica de negócio
+│   │   ├── config/          # Configurações (multer, etc.)
+│   │   ├── @types/          # Definições de tipos TypeScript
+│   │   ├── prisma/          # Configurações do Prisma
+│   │   ├── routes.ts        # Definição das rotas
+│   │   └── server.ts        # Arquivo principal do servidor
+│   ├── prisma/
+│   │   ├── schema.prisma    # Schema do banco de dados
+│   │   └── migrations/      # Migrações do banco
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   │   ├── app/             # Páginas da aplicação (App Router)
+│   │   │   ├── dashboard/   # Área administrativa
+│   │   │   ├── signup/      # Página de registro
+│   │   │   └── page.tsx     # Página inicial
+│   │   ├── components/      # Componentes reutilizáveis
+│   │   ├── services/        # Serviços de API
+│   │   ├── providers/       # Providers do React
+│   │   └── lib/             # Utilitários e configurações
+│   ├── public/              # Arquivos estáticos
+│   └── package.json
+└── README.md
+```
+
+## 📊 Modelos do Banco de Dados
+
+- **User**: Usuários do sistema
+- **Category**: Categorias de produtos
+- **Product**: Produtos da pizzaria
+- **Order**: Pedidos dos clientes
+- **Item**: Itens dentro dos pedidos
+
+## 🔧 Informações Adicionais
+
+### Scripts Disponíveis
+
+**Backend:**
+- `npm run dev`: Inicia o servidor em modo desenvolvimento
+
+**Frontend:**
+- `npm run dev`: Inicia o servidor de desenvolvimento
+- `npm run build`: Gera build de produção
+- `npm run start`: Inicia o servidor de produção
+- `npm run lint`: Executa o linter
+
+### Segurança
+
+- Autenticação JWT implementada
+- Senhas criptografadas com bcrypt
+- Middleware de autenticação em rotas protegidas
+- Upload de arquivos com validação
+
+## 🚀 Futuras Melhorias
+
+- [ ] Implementação de testes automatizados
+- [ ] Sistema de notificações em tempo real
+- [ ] Relatórios e dashboards analíticos
+- [ ] Sistema de delivery integrado
+- [ ] Aplicativo mobile para clientes
+- [ ] Integração com sistemas de pagamento
+- [ ] Sistema de fidelidade
+- [ ] Gestão de estoque
+- [ ] Múltiplas filiais
+- [ ] API de terceiros (Google Maps, etc.)
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+## 👥 Contribuição
+
+Contribuições são bem-vindas! Por favor, leia as diretrizes de contribuição antes de submeter pull requests. 
