@@ -7,7 +7,7 @@ import { router } from './routes'
 import { logger } from './middlewares/logger'
 import { specs } from './config/swagger'
 
-const PORT = 3001
+const PORT = 3000
 
 const app = express()
 app.use(logger)
