@@ -13,8 +13,12 @@ module.exports = {
   coverageReporters: ['text', 'lcov', 'html'],
   setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1'
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^controllers/(.*)$': '<rootDir>/src/controllers/$1',
+    '^services/(.*)$': '<rootDir>/src/services/$1',
+    '^__tests__/(.*)$': '<rootDir>/src/__tests__/$1'
   },
+  moduleDirectories: ['node_modules', 'src'],
   reporters: [
     'default',
     ['jest-html-reporter', {
