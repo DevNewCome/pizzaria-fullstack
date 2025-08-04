@@ -73,9 +73,28 @@ model Item{
 
   order Order @relation(fields: [order_id], references: [id])
   product Product @relation(fields: [product_id], references: [id])
+  order_deliverie Order_deliverie? @relation(fields: [order_deliverie_id], references: [id])
 
   @@map("items")
   order_id String
   product_id String
+  order_deliverie_id String?
 
 }
+
+model Order_deliverie {
+  id String @id @default(uuid())
+  name String?
+  adress String
+  status Boolean @default(false)
+  draft Boolean @default(true)
+  payment_method String
+  contact String
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  items Item[]  // ← Aqui está a relação inversa
+
+  @@map("orders_deliveries")
+}
+

@@ -1,6 +1,6 @@
-# 🍕 Como Usar o Dashboard de Testes
+#  Como Usar o Dashboard de Testes
 
-## 🚀 Passos Simples
+##  Passos Simples
 
 ### 1. Abrir o Dashboard
 ```bash
@@ -25,25 +25,22 @@ npm run test:coverage
 npm run test:watch
 ```
 
-## 📊 O que você verá no Dashboard
+##  O que você verá no Dashboard
 
 - **Estatísticas**: 7 suites, 41 testes passando, 0 falhando
 - **Cobertura**: 60.35% de cobertura geral
 - **Módulos testados**: Serviços, Controladores, Middleware, Integração
 - **Interface bonita**: Cores, animações e design moderno
 
-## 🔄 Atualizar Dados
+##  Atualizar Dados
 
 1. Execute `npm test` no terminal
 2. Recarregue a página do dashboard (F5)
 3. Os dados serão atualizados
 
-## 💡 Dicas
+##  Dicas
 
 - O dashboard funciona melhor no Chrome, Firefox ou Edge
 - Mantenha o terminal aberto para executar os testes
 - Use `npm run test:watch` para testes automáticos
 
----
-
-**Pronto! Agora você tem uma interface visual para acompanhar seus testes! 🎉** 

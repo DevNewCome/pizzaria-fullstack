@@ -1,10 +1,10 @@
-# 🍕 Dashboard de Testes - Sistema de Pizzaria
+#  Dashboard de Testes - Sistema de Pizzaria
 
-## 📊 Visão Geral
+##  Visão Geral
 
 Este dashboard fornece uma interface visual amigável para acompanhar os resultados dos testes automatizados do sistema de pizzaria.
 
-## 🚀 Como Usar
+##  Como Usar
 
 ### Abrir o Dashboard
 
@@ -38,7 +38,7 @@ npm run test:watch
 npm run test:report
 ```
 
-## 📈 Métricas Exibidas
+##  Métricas Exibidas
 
 ### Estatísticas Gerais
 - **Test Suites**: Número total de suites de teste
@@ -53,13 +53,13 @@ npm run test:report
 - **Middleware isAuth**: 100%
 
 ### Tipos de Teste
-- ✅ **Testes de Serviços**: Validação das regras de negócio
-- 🔧 **Testes de Controladores**: Respostas corretas das rotas
-- 🔐 **Testes de Middleware**: Autenticação e autorização
-- 🌐 **Testes de Integração**: Comportamento das rotas HTTP
-- 📋 **Testes de Validação**: Regras de negócio e validações
+-  **Testes de Serviços**: Validação das regras de negócio
+-  **Testes de Controladores**: Respostas corretas das rotas
+-  **Testes de Middleware**: Autenticação e autorização
+-  **Testes de Integração**: Comportamento das rotas HTTP
+-  **Testes de Validação**: Regras de negócio e validações
 
-## 🎨 Recursos Visuais
+##  Recursos Visuais
 
 - **Interface Responsiva**: Funciona em desktop e mobile
 - **Animações Suaves**: Transições e efeitos visuais
@@ -67,7 +67,7 @@ npm run test:report
 - **Barras de Progresso**: Visualização da cobertura de código
 - **Design Moderno**: Interface limpa e profissional
 
-## 🔄 Atualização Automática
+##  Atualização Automática
 
 O dashboard mostra a data/hora da última atualização. Para atualizar os dados:
 
@@ -75,7 +75,7 @@ O dashboard mostra a data/hora da última atualização. Para atualizar os dados
 2. Recarregue a página do dashboard
 3. Os dados serão atualizados automaticamente
 
-## 📁 Estrutura de Arquivos
+##  Estrutura de Arquivos
 
 ```
 backend/
@@ -88,7 +88,7 @@ backend/
         └── index.html      # Relatório detalhado de cobertura
 ```
 
-## 🛠️ Personalização
+##  Personalização
 
 Você pode personalizar o dashboard editando o arquivo `test-dashboard.html`:
 
@@ -97,7 +97,7 @@ Você pode personalizar o dashboard editando o arquivo `test-dashboard.html`:
 - **Métricas**: Adicione novas estatísticas
 - **Animações**: Personalize os efeitos visuais
 
-## 📞 Suporte
+##  Suporte
 
 Se encontrar problemas com o dashboard:
 
